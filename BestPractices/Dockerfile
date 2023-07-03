@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["Best Practices.csproj", "Best Practices/"]
-RUN dotnet restore "Best Practices/Best Practices.csproj"
+COPY ["Best Practices.csproj", "BestPractices/"]
+RUN dotnet restore "BestPractices/Best Practices.csproj"
 COPY . .
-WORKDIR "/src/Best Practices"
+WORKDIR "/src/BestPractices"
 RUN dotnet build "Best Practices.csproj" -c Release -o /app/build
 
 FROM build AS publish
