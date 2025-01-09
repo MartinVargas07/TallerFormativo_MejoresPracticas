@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Best_Practices.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Lista de Vehículos";
+}
+
+<h2>Lista de Vehículos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Año</th>
+            <th>Color</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var vehicle in Model)
+    {
+        <tr>
+            <td>@vehicle.Id</td>
+            <td>@vehicle.Brand</td>
+            <td>@vehicle.Model</td>
+            <td>@vehicle.Year</td>
+            <td>@vehicle.Color</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Index">Volver al Inicio</a>
+</p>

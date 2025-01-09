@@ -1,38 +1,53 @@
 ﻿using Best_Practices.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Best_Practices.ModelBuilders
 {
     public class CarBuilder
     {
-        public string Brand = "Ford";
-        public string Model = "Mustang";
-        public string Color = "Red";
+        private Car _car;
+
+        public CarBuilder()
+        {
+            // Inicializa propiedades por defecto
+            _car = new Car
+            {
+                Brand = "Ford",
+                Color = "DefaultColor",
+                Year = DateTime.Now.Year,
+                Model = "DefaultModel"
+            };
+        }
 
         public CarBuilder SetBrand(string brand)
         {
-            Brand = brand;
+            _car.Brand = brand;
             return this;
         }
 
         public CarBuilder SetModel(string model)
         {
-            Model = model;
+            _car.Model = model;
             return this;
         }
 
         public CarBuilder SetColor(string color)
         {
-            Color = color;
+            _car.Color = color;
             return this;
         }
-        
+
+        public CarBuilder SetYear(int year)
+        {
+            _car.Year = year;
+            return this;
+        }
+
+        // ...Podrías continuar con más propiedades
+
         public Car Build()
         {
-            return new Car(Color, Brand, Model);
+            return _car;
         }
     }
 }

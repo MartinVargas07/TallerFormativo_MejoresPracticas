@@ -1,21 +1,18 @@
-﻿using Best_Practices.ModelBuilders;
-using Best_Practices.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Best_Practices.Models;
 
 namespace Best_Practices.Infraestructure.Factories
 {
     public class FordExplorerCreator : Creator
     {
-        public override Vehicle Create()
+        public override Vehicle CreateVehicle()
         {
-            var builder = new CarBuilder();
-            return builder
-                .SetModel("Explorer")
-                .SetColor("Black")
-                .Build();
+            return new Car
+            {
+                Brand = "Ford",
+                Model = "Explorer",
+                Color = "Black",
+                Year = System.DateTime.Now.Year
+            };
         }
     }
 }

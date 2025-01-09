@@ -1,18 +1,19 @@
-﻿using Best_Practices.ModelBuilders;
-using Best_Practices.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Best_Practices.Models;
 
 namespace Best_Practices.Infraestructure.Factories
 {
     public class FordMustangCreator : Creator
     {
-        public override Vehicle Create()
+        public override Vehicle CreateVehicle()
         {
-            var builder = new CarBuilder();
-            return builder.Build();
+            // Retorna una instancia de Car con datos de un Mustang
+            return new Car
+            {
+                Brand = "Ford",
+                Model = "Mustang",
+                Color = "Red",
+                Year = System.DateTime.Now.Year
+            };
         }
     }
 }

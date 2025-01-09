@@ -1,18 +1,17 @@
 ﻿using Best_Practices.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Best_Practices.Repositories
 {
     public interface IVehicleRepository
     {
-        ICollection<Vehicle> GetVehicles();
+        void Add(Vehicle vehicle);
+        void Add(Car car); // adicional si quieres manejar Car directamente
 
-        void AddVehicle(Vehicle vehicle);
+        Vehicle GetById(int id);
+        IEnumerable<Vehicle> GetAll();
 
-        Vehicle Find(string id);
-
+        void Update(Vehicle vehicle);
+        void Delete(int id);
     }
 }

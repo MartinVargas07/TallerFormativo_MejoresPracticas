@@ -1,36 +1,56 @@
-﻿using Best_Practices.Infraestructure.Singletons;
-using Best_Practices.Models;
-using System;
+﻿using Best_Practices.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Best_Practices.Repositories
 {
     public class MyVehiclesRepository : IVehicleRepository
     {
-        private readonly VehicleCollection _memoryCollection;
+        private readonly List<Vehicle> _vehicles = new List<Vehicle>();
+        private int _autoIncrementId = 1;
 
-        public MyVehiclesRepository()
+        public void Add(Vehicle vehicle)
         {
-            _memoryCollection = VehicleCollection.Instance;
+            vehicle.Id = _autoIncrementId++;
+            _vehicles.Add(vehicle);
         }
 
-        public void AddVehicle(Vehicle vehicle)
+        // Sobrecarga si vas a manejar Car directamente
+        public void Add(Car car)
         {
-            _memoryCollection.Vehicles.Add(vehicle);
+            car.Id = _autoIncrementId++;
+            _vehicles.Add(car);
         }
 
-        public Vehicle Find(string id)
+        public Vehicle GetById(int id)
         {
-           return  _memoryCollection.Vehicles.FirstOrDefault(v => v.ID.Equals(new Guid(id)));
+            return _vehicles.FirstOrDefault(v => v.Id == id);
         }
 
-        public ICollection<Vehicle> GetVehicles()
+        public IEnumerable<Vehicle> GetAll()
         {
-            return _memoryCollection.Vehicles;
+            return _vehicles.ToList();
         }
 
-        
+        public void Update(Vehicle vehicle)
+        {
+            var existing = _vehicles.FirstOrDefault(v => v.Id == vehicle.Id);
+            if (existing != null)
+            {
+                existing.Brand = vehicle.Brand;
+                existing.Color = vehicle.Color;
+                existing.Model = vehicle.Model;
+                existing.Year = vehicle.Year;
+            }
+        }
+
+        public void Delete(int id)
+        {
+            var existing = _vehicles.FirstOrDefault(v => v.Id == id);
+            if (existing != null)
+            {
+                _vehicles.Remove(existing);
+            }
+        }
     }
 }

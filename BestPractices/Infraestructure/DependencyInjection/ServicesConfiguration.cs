@@ -1,10 +1,6 @@
-﻿using Best_Practices.Controllers;
+﻿using Best_Practices.Infraestructure.Factories;
 using Best_Practices.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Best_Practices.Infraestructure.DependencyInjection
 {
@@ -12,7 +8,13 @@ namespace Best_Practices.Infraestructure.DependencyInjection
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IVehicleRepository, MyVehiclesRepository>();
+            // Repositorio InMemory
+            services.AddScoped<IVehicleRepository, MyVehiclesRepository>();
+
+            // Factories
+            services.AddTransient<FordMustangCreator>();
+            services.AddTransient<FordExplorerCreator>();
+
         }
     }
 }

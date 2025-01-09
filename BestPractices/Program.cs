@@ -1,12 +1,5 @@
-using Best_Practices.Infraestructure.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Best_Practices
 {
@@ -17,6 +10,7 @@ namespace Best_Practices
             CreateHostBuilder(args).Build().Run();
         }
 
+        // .NET 6 con WebHostBuilder tradicional
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>

@@ -1,17 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Best_Practices.Models
 {
-    public class Car : Vehicle
+    // Ejemplo de clase Car que implementa la interfaz IVehicle
+    public class Car : IVehicle
     {
-        public override int Tires { get => 4; }
+        public int Id { get; set; }
+        public string Model { get; set; }
+        public string Brand { get; set; }
+        public string Color { get; set; }
+        public int Year { get; set; }
 
-        public Car(string color, string brand, string model) : base(color, brand, model)
+        // Opcional: constructor
+        public Car()
         {
+            // Por defecto, año actual
+            Year = DateTime.Now.Year;
+        }
 
+        public override string ToString()
+        {
+            return $"{Brand} {Model} ({Year}) - Color: {Color}";
         }
     }
 }
