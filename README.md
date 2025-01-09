@@ -1,60 +1,83 @@
-<<<<<<< HEAD
-# TallerFormativo_MejoresPracticas
-=======
-Pepito es un Ingeniero de Software Junior en Codificando Con Patrones Cía. Ltda. Se le ha encargado la tarea de completar los requerimientos funcionales del aplicativo de automóviles al que la empresa da soporte. 
+# Taller Formativo Mejores Prácticas
 
-Los requisitos son los siguientes: 
+## Descripción
+Este proyecto tiene como objetivo la implementación y demostración de patrones de diseño y buenas prácticas en el desarrollo de software. Se trabajó sobre una aplicación de automóviles que permite gestionar vehículos y simular funcionalidades sin necesidad de una base de datos lista. La solución implementada aplica principios **SOLID** y patrones de diseño como **Repository**, **Factory Method** y **Builder Pattern**, haciendo el sistema escalable, mantenible y fácil de probar.
 
-- Implementar los métodos de agregar vehículos (add Mustang y add Explorer) en el Home Page. El programador anterior implementó un patrón repositorio que contiene los métodos CRUD para el repositorio de automóviles; sin embargo, el equipo de QA ha reportado que no funciona como se espera. 
- 
+---
 
-- El equipo de base de datos ha comentado que el esquema de la base de datos no está listo. Por lo que se necesita buscar una forma de probar la funcionalidad sin tener que guardar en la base de datos, de tal forma que después se implemente la funcionalidad de base de datos cuando esté lista. 
+## Tabla de Contenidos
+1. [Descripción](#descripción)  
+2. [Problemas Identificados](#problemas-identificados)  
+3. [Cambios Implementados](#cambios-implementados)  
+4. [Patrones de Diseño Aplicados](#patrones-de-diseño-aplicados)  
+5. [Instalación](#instalación)  
+6. [Ejecución del Proyecto](#ejecución-del-proyecto)  
+7. [Autores](#autores)  
+8. [Recursos Útiles](#recursos-útiles)  
+9. [Licencia](#licencia)
 
-- El equipo de negocio ha solicitado agregar el año actual, y 20 propiedades más por defecto que se solicitarán en el siguiente sprint. Estas propiedades afectan a vehículo. Implementa un patrón de diseño para agregar propiedades por defecto, y como lo diseñarías para minimizar los cambios para el siguiente sprint. 
+---
 
-- Se planea agregar un nuevo modelo. El Arquitecto de Software prevee que la unidad de negocio, planeará la introducción de más modelos por lo cual sugiere la implementación de un Factory Method. 
+## Problemas Identificados
+1. **Repositorio defectuoso**: 
+   - El patrón `Repository` estaba acoplado directamente a una base de datos no disponible.
+2. **Base de datos no lista**:
+   - Se necesitaba simular la funcionalidad sin persistir datos en una BD real.
+3. **Nuevas propiedades**:
+   - Se requerían propiedades adicionales que pudieran crecer sin romper la clase `Car`.
+4. **Crecimiento futuro de modelos**:
+   - La incorporación de nuevos modelos requería una arquitectura extensible.
+5. **Falta de principios SOLID**:
+   - El código existente no respetaba la separación de responsabilidades, causando acoplamiento.
 
-  - Color: Red 
+---
 
-  - Marca: Ford 
+## Cambios Implementados
 
-  - Modelo: Escape 
+1. **Migración a .NET 6**:
+   - Actualización del proyecto para usar el framework .NET 6.
 
- 
+2. **Patrón Repository con Implementación en Memoria**:
+   - Se creó `MyVehiclesRepository.cs`, que almacena datos en memoria para pruebas.
+   - Se definió `IVehicleRepository` para desacoplar el repositorio de la lógica de negocio.
 
- 
+3. **Patrón Factory Method**:
+   - Se implementaron fábricas específicas como `FordMustangCreator` y `FordExplorerCreator` para encapsular la creación de modelos.
+   - Preparado para agregar nuevos modelos como `Escape` u otros futuros.
 
-Como primera parte del taller los alumnos tendrán: 
+4. **Builder Pattern**:
+   - Se creó `CarBuilder` para gestionar configuraciones de vehículos y facilitar la adición de propiedades futuras.
 
-Que analizar el código propuesto y deberán identificar que mejores prácticas, patrón o patrones se puede implementar para mejorar la solución. 
+5. **Controlador Refactorizado**:
+   - `HomeController.cs` ahora utiliza inyección de dependencias para trabajar con repositorios y fábricas.
 
-Segundo deberán presentar en un documento explicativo de las mejores prácticas con el diseño UML del patrón o patrones a implementar y justificar el motivo de la propuesta. 
+6. **Inyección de Dependencias**:
+   - Configurada en `ServicesConfiguration.cs` para utilizar implementaciones específicas.
 
- Y finalmente los alumnos procederán a clonar el repositorio base e implementar el patrón o los patrones propuestos en la una versión online (código debe tener comentarios) 
+7. **Vistas Simples**:
+   - Se añadieron vistas (`Index.cshtml`, `ShowCars.cshtml`) para interactuar con el sistema y listar vehículos.
 
- 
+---
 
-FORMA DE TRABAJO: 
+## Patrones de Diseño Aplicados
 
-Establezca grupos de trabajo de máximo 2 integrantes. 
+1. **Repository Pattern**:
+   - Abstrae el acceso a datos con una implementación en memoria, preparada para migrar a una base de datos real en el futuro.
 
- 
+2. **Factory Method**:
+   - Centraliza la creación de objetos específicos (`Mustang`, `Explorer`), facilitando la extensión.
 
-ESPECIFICACIONES DE ENTREGA: 
+3. **Builder Pattern**:
+   - Simplifica la construcción de objetos `Car` con múltiples propiedades configurables.
 
-Documento técnico que contiene los siguientes puntos: 
+4. **SOLID Principles**:
+   - Aplicación de SRP (Single Responsibility), DIP (Dependency Inversion), y OCP (Open/Closed).
 
-Identifica el problema dentro de las restricciones del proyecto: 	Describir los problemas encontrados en el escenario propuesto por el docente de una manera técnica identificando de manera correcta las limitaciones y restricciones. 
+---
 
-Selecciona metodologías integrales para solucionar el problema: En el documento técnico explicar los patrones que seleccionan y justarlos de manera técnica  
+## Instalación
 
- 
-
-Diseña una propuesta técnica para el problema considerando los recursos y restricciones del proyecto: 
-
-Prototipo de la solución aplicado el patrón de diseño, compartido en GIT 
-
- 
-
- 
->>>>>>> e7af2dd (Create README.md)
+1. Clona el repositorio en tu máquina local:
+   ```bash
+   git clone https://github.com/MartinVargas07/TallerFormativo_MejoresPracticas.git
+   cd TallerFormativo_MejoresPracticas
